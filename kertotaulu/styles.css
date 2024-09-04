@@ -1,0 +1,58 @@
+body { 
+  background-color: #fff; 
+  color: #000;
+  font-family: calibri, arial, helvetica, sans-serif; 
+  padding: 0.3cm;
+  margin: 0;
+  font-size: 12pt;
+}
+
+#wrapper {
+  width: 18cm; /* Sisällön kokonaisleveys */
+}
+
+header {      
+  font-size: 90%;
+  margin-bottom: 0.5cm;
+}
+
+header h1 { 
+  font-size: 1.2em;  
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.5cm 11cm 1.5cm 3.5cm;
+  margin-top: 0.5cm;
+}
+
+#tasks {
+  border: 0.5mm solid #999;
+  border-radius: 0.4em;
+  text-align: center;
+  padding: 0.4cm 0;      
+}
+
+.taskgroup {
+  float:left; 
+  width: 3.05cm; 
+  border-left: 0.4mm solid #999; 
+  text-align: right; 
+  padding-right: 0.7cm;
+  padding-left: 0.6cm;
+}
+
+.taskgroup:first-child {
+  border: none;
+}
+
+.taskgroup div {
+  line-height: 0.85cm;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.6em;
+  margin-top: 0.4cm;
+}
+  
