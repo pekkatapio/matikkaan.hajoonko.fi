@@ -33,15 +33,15 @@ function generateSingleMultiplicationTable(multiplier) {
     }
   }
   fillContent(tasks);
-  fillVisitors();
+  fillVisitors("matikkaan.hajoonko.fi/kertotaulu");
 }
 
-function fillVisitors() {
+function fillVisitors(site) {
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://neutroni.hayo.fi/~pta/api/count/matikkaan.hajoonko.fi/kertotaulu");
+  xhr.open("GET", "https://neutroni.hayo.fi/~pta/api/count/" + site);
   xhr.responseType = "json";
   xhr.onload = function() {
-    document.getElementById('visits').innerText = "Kertotaulukokeita luotu " + this.response.value + " kertaa.";
+    document.getElementById('visits').innerText = "Kokeita luotu " + this.response.value + " kertaa.";
   }
   xhr.send();  
 }
@@ -55,5 +55,5 @@ function generateMultiplicationTable() {
   }
   shuffleArray(tasks);
   fillContent(tasks);
-  fillVisitors();
+  fillVisitors("matikkaan.hajoonko.fi/kertotaulu");
 }
