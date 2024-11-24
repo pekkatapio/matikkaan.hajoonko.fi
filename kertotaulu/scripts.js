@@ -29,7 +29,7 @@ function generateSingleMultiplicationTable(multiplier) {
     let base = multiplicands.slice();
     shuffleArray(base);
     for (let index = 0; index < base.length; index++) {
-      tasks.push(multiplier + " &times; " + base[index] + " = ______");
+      tasks.push(base[index] + " &times; " + multiplier + " = ______");
     }
   }
   fillContent(tasks);
