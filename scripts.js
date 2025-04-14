@@ -36,6 +36,12 @@ function fillContentWithTasks(tasks, groups=4, rows=25) {
   document.getElementById("tasks").innerHTML = content;
 }
 
+/* 
+  fillDigits
+    Lisää digits-tunnisteella olevaan div-elementtiin
+    vierailuja vastaavat numerokuvat. Täyttää luvun alkuun 
+    ja loppuun tarpeellisen määrän täytenumeroita.
+*/   
 function fillDigits(visits) {
   let numbers = [0,1,2,3,4,5,6,7,8,9];
   shuffleArray(numbers);
@@ -87,7 +93,7 @@ function generateMiniMultiplicationTable() {
   let tasks = [];
   for (let index = 0; index < multipliers.length; index++ ) {
     for (let multiplicand = 1; multiplicand <= 10; multiplicand++ ) {
-      tasks.push(multipliers[index] + " &times; " + multiplicand + " = ______");
+      tasks.push(multiplicand + " &times; " + multipliers[index] + " = ______");
     }    
   }
   shuffleArray(tasks);
@@ -124,7 +130,7 @@ function generateSingleMultiplicationTable(multiplier) {
     let base = multiplicands.slice();
     shuffleArray(base);
     for (let index = 0; index < base.length; index++) {
-      tasks.push(multiplier + " &times; " + base[index] + " = ______");
+      tasks.push(base[index] + " &times; " + multiplier + " = ______");
     }
   }
   fillContentWithTasks(tasks);
