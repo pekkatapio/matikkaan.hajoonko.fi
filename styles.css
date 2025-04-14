@@ -50,6 +50,11 @@ header h1 {
   padding-left: 0.6cm;
 }
 
+.col3 .taskgroup {
+  width: 4.5cm;
+  font-size: 1.33em;
+}
+
 .taskgroup:first-child {
   border: none;
 }
@@ -58,8 +63,16 @@ header h1 {
   line-height: 0.85cm;
 }
 
+.col3 .taskgroup div {
+  line-height: 1cm;
+}
+
 footer {
   text-align: center;
   font-size: 0.6em;
   margin-top: 0.4cm;
+}
+
+#digits {
+  margin: 1em 0;
 }

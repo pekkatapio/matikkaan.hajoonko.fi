@@ -26,12 +26,34 @@ function fillContentWithTasks(tasks, groups=4, rows=25) {
     content = content + "<div class='taskgroup'>"
     for (let row = 1; row <= rows; row++) {
       let task = tasks.shift();
-      content = content + "<div>" + task + "</div>";
+      if (task) {
+        content = content + "<div>" + task + "</div>";
+      }
     }
     content = content + "</div>"
   }
   content = content + "<div style='clear: both'></div>";
   document.getElementById("tasks").innerHTML = content;
+}
+
+function fillDigits(visits) {
+  let numbers = [0,1,2,3,4,5,6,7,8,9];
+  shuffleArray(numbers);
+  const visitDigits = new String(visits).split("");
+  const centerDigits = visitDigits.length;  
+  const startDigits = Math.ceil((10-centerDigits)/2);    
+  const endDigits = 10 - startDigits - centerDigits;
+  let content = "";
+  for (let i = 0; i < startDigits; i++) {
+    content = content + "<img src='../images/" + numbers.shift() + "v.png' alt=''>";
+  }
+  for (let i = 0; i < centerDigits; i++) {
+    content = content + "<img src='../images/" + visitDigits[i] + ".png' alt=''>";
+  }
+  for (let i = 0; i < endDigits; i++) {
+    content = content + "<img src='../images/" + numbers.shift() + "v.png' alt=''>";
+  }
+  document.getElementById("digits").innerHTML = content;
 }
 
 /*
@@ -40,12 +62,15 @@ function fillContentWithTasks(tasks, groups=4, rows=25) {
     ja lisää inforivin visits-tunnisteella olevaan 
     elementtiin.
 */   
-function fillVisitors(site) {
+function fillVisitors(site, digits = false) {
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "https://neutroni.hayo.fi/~pta/api/count/" + site);
-  xhr.responseType = "json";
+  xhr.responseType = "json";  
   xhr.onload = function() {
     document.getElementById('visits').innerText = "Kokeita luotu " + this.response.value + " kertaa.";
+    if (digits) { 
+      fillDigits(this.response.value); 
+    }
   }
   xhr.send();  
 }
@@ -53,6 +78,24 @@ function fillVisitors(site) {
 /*
   Tehtävien luontifunktiot
 
+  generateMiniMultiplicationTable
+    Muodostaa lukujen 2,3,4,5 ja 10 kertotaulun 
+    (50 tehtävää) ja täytää sivun niillä.
+*/
+function generateMiniMultiplicationTable() {
+  let multipliers = [2,3,4,5,10];
+  let tasks = [];
+  for (let index = 0; index < multipliers.length; index++ ) {
+    for (let multiplicand = 1; multiplicand <= 10; multiplicand++ ) {
+      tasks.push(multipliers[index] + " &times; " + multiplicand + " = ______");
+    }    
+  }
+  shuffleArray(tasks);
+  fillContentWithTasks(tasks, 3, 17);
+  let visits = fillVisitors("matikkaan.hajoonko.fi/minikertotaulu",true);  
+}
+
+/*
   generateMultiplicationTable
     Muodostaa lukujen 1-10 kertotaulun (100 tehtävää) ja 
     täytää sivun niillä.
