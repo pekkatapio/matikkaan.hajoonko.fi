@@ -84,6 +84,29 @@ function fillVisitors(site, digits = false) {
 /*
   Tehtävien luontifunktiot
 
+  generateDifficultMultiplicationTable
+    Muodostaa vaikeat kertotaulut (100 tehtävää)
+    ja täytää sivun niillä.
+*/
+function generateDifficultMultiplicationTable() {
+  let multiplications = [
+    [3,7], [3,8], [4,7], [4,8],
+    [6,6], [7,6], [8,6], [9,6],
+    [6,7], [7,7], [8,7], [9,7],
+    [6,8], [7,8], [8,8], [9,8],
+    [6,9], [7,9], [8,9], [9,9]
+  ];
+  let tasks = [];
+  multiplications.forEach((multiplication) => {
+    tasks.push(multiplication[0] + " &times; " + multiplication[1] + " = ______");
+  });
+  tasks = new Array(Math.ceil(100/tasks.length)).fill(tasks).flat();
+  shuffleArray(tasks);
+  fillContentWithTasks(tasks);
+  let visits = fillVisitors("matikkaan.hajoonko.fi/kertotaulu");
+}
+
+/*
   generateMiniMultiplicationTable
     Muodostaa lukujen 2,3,4,5 ja 10 kertotaulun 
     (50 tehtävää) ja täytää sivun niillä.
